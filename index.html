@@ -59,6 +59,33 @@
       </div>
       <div id="text-input" contenteditable="true"></div>
     </div>
+    <script>
+        let optionsButtons = document.querySelectorAll(".option-button");
+        let advancedOptionButton = document.querySelectorAll(".adv-option-button");
+        let writingArea = document.getElementById("text-input");
+        let alignButtons = document.querySelectorAll(".align");
+
+        //main
+        const modifyText = (command, defaultUi, value) => {
+        //execCommand executes command on selected text
+        document.execCommand(command, defaultUi, value);
+        };
+
+        //For basic operations which don't need value parameter
+        optionsButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            modifyText(button.id, false, null);
+        });
+        });
+
+        //options that require value parameter (e.g colors)
+        advancedOptionButton.forEach((button) => {
+        button.addEventListener("change", () => {
+            modifyText(button.id, false, button.value);
+        });
+        });
+
+    </script>
     <!--Scripts-->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
